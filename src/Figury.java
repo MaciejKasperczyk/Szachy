@@ -6,14 +6,32 @@ class Pionek
 
     // Koordynaty by wiedziec gdzie Pionek ma powstać
     int wspolrzedneX;
-    int getWspolrzedneY;
+    int wspolrzedneY;
+    String kolor;
+
+    public boolean czyZbity = false;
 
 
-    public boolean czyZbyty = False;
-    public enum kolor
+// Konstruktor klasy Pionek
+    public Pionek(int wspolrzedneX, int wspolrzedneY, String kolor, boolean czyZbity)
     {
-        bialy,
-        czarny
+        this.wspolrzedneY = wspolrzedneY;
+        this.wspolrzedneX = wspolrzedneX;
+        this.kolor = kolor;
+        this.czyZbity = czyZbity;
+
+    }
+
+
+
+    // Testowa metoda by sprawdzicz czy wszystko sie przypisuje
+    public void pokazCechy()
+    {
+        System.out.println(wspolrzedneX);
+        System.out.println(wspolrzedneY);
+        System.out.println(kolor);
+        System.out.println(czyZbity);
+
     }
 
 

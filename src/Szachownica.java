@@ -1,6 +1,20 @@
 //Klasa szachownica
 public class Szachownica {
 
+    int X;
+    int y;
+    /*
+    public Szachownica(int x, int y)
+    {
+        this.szachownica = szachownica;
+    }
+
+    */
+     */
+    public static void szchownicaWyswietl()
+        {
+
+        }
     // Metoda rozstawiajaca szachownice - na poczatku kazdej nowej gry.
     // W pozniejszej implementacji trzeba zamienic pionki na elementy klasy figury a nie czyste liczby
     // To do:
