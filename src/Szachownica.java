@@ -1,24 +1,37 @@
 //Klasa szachownica
 public class Szachownica {
 
-    int X;
-    int y;
-    /*
-    public Szachownica(int x, int y)
+    //Najważniejsza tablica w całym programie, przechowuje zawartość szachownicy (czyli gry)
+     static String[][] szachownicaTablica = new String[8][8];
+
+     //Na tym etapie kodu nie widze by szachownica miala przyjmować jakieś parametry (do sprawdzenia)
+     public Szachownica()
     {
-        this.szachownica = szachownica;
+
+
     }
 
-    */
-     */
-    public static void szchownicaWyswietl()
+    //Metoda która wstawia figury (korzysta z klasy figur)
+    public static void szachownicaUmiescPionek(int x,int y,String znak)
+    {
+        szachownicaTablica[x][y] = znak;
+
+    }
+
+
+    // Metoda wyswietlajaca szachownice
+    public static void szachownicaWyswietl()
         {
+            for (int i =0;i<8;i++)
+            {
+                for (int j=0;j<8;j++) System.out.print(szachownicaTablica[i][j]);
+                System.out.println();
+            }
 
         }
-    // Metoda rozstawiajaca szachownice - na poczatku kazdej nowej gry.
-    // W pozniejszej implementacji trzeba zamienic pionki na elementy klasy figury a nie czyste liczby
-    // To do:
-    // 1. Przerobic for inty by fory wypelnily tymi wartosciami
+
+
+
     public static void szachownicaRozstaw() {
         char znak = 65;
         System.out.println();

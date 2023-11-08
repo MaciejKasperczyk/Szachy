@@ -9,6 +9,7 @@ class Pionek
     int wspolrzedneY;
     String kolor;
 
+    String litera = "P";
     public boolean czyZbity = false;
 
 
