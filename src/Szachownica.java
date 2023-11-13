@@ -12,7 +12,7 @@ public class Szachownica {
     }
 
     //Metoda która wstawia figury (korzysta z klasy figur)
-    public static void szachownicaUmiescPionek(int x,int y,String znak)
+    public static void szachownicaUmiescFigure(int x,int y,String znak)
     {
         szachownicaTablica[x][y] = znak;
 
@@ -24,7 +24,7 @@ public class Szachownica {
         {
             for (int i =0;i<8;i++)
             {
-                for (int j=0;j<8;j++) System.out.print(szachownicaTablica[i][j]);
+                for (int j=0;j<8;j++) System.out.print(szachownicaTablica[i][j]+" | ");
                 System.out.println();
             }
 
