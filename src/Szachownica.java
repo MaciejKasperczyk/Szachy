@@ -19,12 +19,16 @@ public class Szachownica {
     }
 
 
-    // Metoda wyswietlajaca szachownice
+    // Metoda wyswietlajaca szachownice, dla pustych wartosci zamiast wyswietlac null, wyswietla spacje " "
     public static void szachownicaWyswietl()
         {
             for (int i =0;i<8;i++)
             {
-                for (int j=0;j<8;j++) System.out.print(szachownicaTablica[i][j]+" | ");
+                for (int j=0;j<8;j++) {
+                    if(j==0) System.out.print(" | ");
+                    if(szachownicaTablica[i][j] != null) System.out.print(szachownicaTablica[i][j] + " | ");
+                    else System.out.print(" " +" | ");
+                }
                 System.out.println();
             }
 
