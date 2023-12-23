@@ -1,114 +1,132 @@
-abstract class Figury {
+ class Figura {
+public  static final int kolorCzarny = 0;
+public  static  final int kolorBialy = 1;
+
+public int wspolrzedneX;
+public int wspolrzedneY;
+
+public boolean czyZbity;
+
+private String kolor;
+
+public Szachownica szachownica;
+public int gracz;
+
+
+
+
+
+
+public Figura(Szachownica szachownica, int wspolrzedneX,int wspolrzedneY, String kolor, boolean czyZbity, int gracz)
+{
+    this.szachownica = szachownica;
+    this.wspolrzedneX = wspolrzedneX;
+    this.wspolrzedneY = wspolrzedneY;
+    this.kolor = kolor;
+    this.czyZbity = czyZbity;
+    this.gracz = gracz;
+
+
+
+
 
 }
-class Pionek {
 
-    // Koordynaty by wiedziec gdzie Pionek ma powstać
-    int wspolrzedneX;
-    int wspolrzedneY;
-    String kolor;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+class Pionek extends Figura {
+
 
     String litera = "P";
-    public boolean czyZbity = false;
+
 
 
     // Konstruktor klasy Pionek
-    public Pionek(int wspolrzedneX, int wspolrzedneY, String kolor, boolean czyZbity) {
-        this.wspolrzedneY = wspolrzedneY;
-        this.wspolrzedneX = wspolrzedneX;
-        this.kolor = kolor;
-        this.czyZbity = czyZbity;
-
+    public Pionek(Szachownica szachownica, int wspolrzedneX,int wspolrzedneY, String kolor, boolean czyZbity, int gracz) {
+        super(szachownica,wspolrzedneX,wspolrzedneY,kolor,czyZbity,gracz);
     }
+    public boolean mozliwyRuch(Szachownica szachownica, int wspolrzedneX,int wspolrzedneY, String kolor, boolean czyZbity, int gracz)
+    {
+
+        return true;
+    }
+
+
 }
 
 
-    class Wieza {
-        int wspolrzedneY;
-        int wspolrzedneX;
-        String kolor;
+    class Wieza extends Figura {
         String litera = "W";
-        public boolean czyZbity = false;
 
 
-        public Wieza(int wspolrzedneX, int wspolrzedneY, String kolor, boolean czyZbity) {
-            this.wspolrzedneY = wspolrzedneY;
-            this.wspolrzedneX = wspolrzedneX;
-            this.kolor = kolor;
-            this.czyZbity = czyZbity;
+        public Wieza(Szachownica szachownica, int wspolrzedneX,int wspolrzedneY, String kolor, boolean czyZbity, int gracz) {
+            super(szachownica,wspolrzedneX,wspolrzedneY,kolor,czyZbity,gracz);
+
 
         }
-
     }
 
-class Skoczek {
-    int wspolrzedneY;
-    int wspolrzedneX;
-    String kolor;
+class Skoczek extends Figura {
+
     String litera = "S";
-    public boolean czyZbity = false;
 
 
-    public Skoczek(int wspolrzedneX, int wspolrzedneY, String kolor, boolean czyZbity) {
-        this.wspolrzedneY = wspolrzedneY;
-        this.wspolrzedneX = wspolrzedneX;
-        this.kolor = kolor;
-        this.czyZbity = czyZbity;
-
-    }
+    public Skoczek(Szachownica szachownica, int wspolrzedneX,int wspolrzedneY, String kolor, boolean czyZbity, int gracz) {
+        super(szachownica,wspolrzedneX,wspolrzedneY,kolor,czyZbity,gracz);
 
 }
+}
 
-class Goniec {
-    int wspolrzedneY;
-    int wspolrzedneX;
-    String kolor;
+class Goniec extends Figura{
     String litera = "G";
-    public boolean czyZbity = false;
 
 
-    public Goniec(int wspolrzedneX, int wspolrzedneY, String kolor, boolean czyZbity) {
-        this.wspolrzedneY = wspolrzedneY;
-        this.wspolrzedneX = wspolrzedneX;
-        this.kolor = kolor;
-        this.czyZbity = czyZbity;
+    public Goniec(Szachownica szachownica, int wspolrzedneX,int wspolrzedneY, String kolor, boolean czyZbity, int gracz) {
+        super(szachownica,wspolrzedneX,wspolrzedneY,kolor,czyZbity,gracz);
 
     }
-
 }
 
-class Hetman {
-    int wspolrzedneY;
-    int wspolrzedneX;
-    String kolor;
+class Hetman extends Figura{
     String litera = "H";
-    public boolean czyZbity = false;
 
 
-    public Hetman(int wspolrzedneX, int wspolrzedneY, String kolor, boolean czyZbity) {
-        this.wspolrzedneY = wspolrzedneY;
-        this.wspolrzedneX = wspolrzedneX;
-        this.kolor = kolor;
-        this.czyZbity = czyZbity;
+    public Hetman(Szachownica szachownica, int wspolrzedneX,int wspolrzedneY, String kolor, boolean czyZbity, int gracz) {
+        super(szachownica,wspolrzedneX,wspolrzedneY,kolor,czyZbity,gracz);
 
     }
 
 }
 
 
-class Krol {
-    int wspolrzedneY;
-    int wspolrzedneX;
-    String kolor;
+class Krol extends Figura {
+
     String litera = "K";
-    public boolean czyZbity = false;
 
 
-    public Krol(int wspolrzedneX, int wspolrzedneY, String kolor, boolean czyZbity) {
-        this.wspolrzedneY = wspolrzedneY;
-        this.wspolrzedneX = wspolrzedneX;
-        this.kolor = kolor;
-        this.czyZbity = czyZbity;
+    public Krol(Szachownica szachownica, int wspolrzedneX,int wspolrzedneY, String kolor, boolean czyZbity, int gracz) {
+        super(szachownica,wspolrzedneX,wspolrzedneY,kolor,czyZbity,gracz);
 
     }
 
@@ -118,13 +136,5 @@ class Krol {
 
 
 
-    // Testowa metoda by sprawdzicz czy wszystko sie przypisuje
-   /* public void pokazCechy()
-    {
-        System.out.println(wspolrzedneX);
-        System.out.println(wspolrzedneY);
-        System.out.println(kolor);
-        System.out.println(czyZbity);
 
-    }*/
 
