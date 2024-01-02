@@ -5,7 +5,7 @@ import static java.lang.System.in;
 
 public class Gra {
         private Szachownica szachownica;
-        private LinkedList<Figura> bialeFigury;
+
         Scanner userInput = new Scanner(System.in);
 
 
