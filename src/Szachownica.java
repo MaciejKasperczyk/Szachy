@@ -1,60 +1,86 @@
 //Klasa szachownica
+
+
 public class Szachownica {
 
 
+    private Figura[][] szachownica;
 
 
-    //Najważniejsza tablica w całym programie, przechowuje zawartość szachownicy (czyli gry)
-     static String[][] szachownicaTablica = new String[8][8];
 
-     //Na tym etapie kodu nie widze by szachownica miala przyjmować jakieś parametry (do sprawdzenia)
-     public Szachownica()
+     public Szachownica(int wielkoscX,int wielkoscY)
     {
-
+        szachownica = new Figura[wielkoscX][wielkoscY];
 
     }
+
+
 
     //Metoda która wstawia figury (korzysta z klasy figur)
-    public static void szachownicaUmiescFigure(int x,int y,String znak)
+    public void szachownicaUmiescFigure(Figura figura,int x,int y)
     {
-        szachownicaTablica[x][y] = znak;
+        szachownica[x][y] = figura;
 
     }
 
-
-    // Metoda wyswietlajaca szachownice, dla pustych wartosci zamiast wyswietlac null, wyswietla spacje " "
-    public static void szachownicaWyswietl()
-        {
-            for (int i =0;i<8;i++)
-            {
-                for (int j=0;j<8;j++) {
-                    if(j==0) System.out.print(" | ");
-                    if(szachownicaTablica[i][j] != null)
-                    {
-                     System.out.print(szachownicaTablica[i][j] + " | ");
-                    }
-                    else System.out.print(" " +" | ");
+    public void szachownicaWyswietl(){
+         for (int i = 0; i<8;i++)System.out.print(i);
+        System.out.println();
+        for (int xBoard = 0; xBoard < getXDimension(); xBoard++){
+            for (int yBoard = 0; yBoard < getYDimension(); yBoard++){
+                if (szachownica[xBoard][yBoard] == null)
+                    System.out.print(" ");
+                else{
+                    if (szachownica[xBoard][yBoard] instanceof Pionek)
+                        System.out.print("P");
+                    else if (szachownica[xBoard][yBoard] instanceof Skoczek)
+                        System.out.print("S");
+                    else if (szachownica[xBoard][yBoard] instanceof Hetman)
+                        System.out.print("D");
+                    else if (szachownica[xBoard][yBoard] instanceof Krol)
+                        System.out.print("K");
+                    else if (szachownica[xBoard][yBoard] instanceof Wieza)
+                        System.out.print("W");
+                    else if (szachownica[xBoard][yBoard] instanceof Goniec)
+                        System.out.print("G");
+                    else
+                        System.out.print("x");
                 }
-                System.out.println();
             }
+            System.out.println();
 
         }
+        for (int i = 0; i<8;i++)System.out.print(i);
+        System.out.println();
+     }
 
-    public String sprawdzFigure(int poleFiguryX,int poleFiguryY)
+        public int getXDimension(){
+            return szachownica[0].length;
+        }
+
+        public int getYDimension(){
+            return szachownica.length;
+        }
+        public Figura[][] zwrocSzachownica()
+        {
+            return szachownica;
+        }
+
+
+
+
+    public void usunPionkaZPlanszy(Figura figura)
     {
-        String figuraRuszana = szachownicaTablica[poleFiguryX][poleFiguryY];
-        return figuraRuszana;
+        int wspolrzedneXPrzedUsunieciem = figura.zwrocX();
+        int wspolrzedneYPrzedUsunieciem = figura.zwrocY();
+        szachownica[wspolrzedneXPrzedUsunieciem][wspolrzedneYPrzedUsunieciem] = null;
 
     }
-
-    public void ruch(int poleFiguryX,int poleFiguryY, int ruchX, int ruchY)
+    public Figura sprawdzFigure(int x, int y)
     {
-        String figuraRuszana = szachownicaTablica[poleFiguryX][poleFiguryY];
-        szachownicaTablica[ruchX][ruchY] = figuraRuszana;
-        szachownicaTablica[poleFiguryX][poleFiguryY] = null;
-
-
+        return szachownica[x][y];
     }
+
 
 
 
