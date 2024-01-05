@@ -6,10 +6,12 @@ class Hetman extends Figura{
 
     }
 
-    @Override
+
+
     public boolean mozliwyRuch(int wspolrzedneXRuchu, int wspolrzedneYRuchu) {
         int wspolrzedneX = this.zwrocX();
         int wspolrzedneY = this.zwrocY();
+
 
         // Sprawdź, czy ruch jest pionowy, poziomy lub po skosie
         if (wspolrzedneX == wspolrzedneXRuchu || wspolrzedneY == wspolrzedneYRuchu || Math.abs(wspolrzedneXRuchu - wspolrzedneX) == Math.abs(wspolrzedneYRuchu - wspolrzedneY)) {
@@ -31,8 +33,10 @@ class Hetman extends Figura{
 
             // Sprawdź, czy na docelowych współrzędnych jest figura przeciwnika
             Figura figuraNaDocelowychWspolrzednych = szachownica.sprawdzFigure(wspolrzedneXRuchu, wspolrzedneYRuchu);
-            if (figuraNaDocelowychWspolrzednych != null && this.gracz != figuraNaDocelowychWspolrzednych.gracz) {
-                return true; // Dozwolone bicie przeciwnika
+
+           if(figuraNaDocelowychWspolrzednych != null && this.gracz != figuraNaDocelowychWspolrzednych.gracz){
+               return true;
+
             } else {
                 return true; // Dozwolony pusty ruch
             }

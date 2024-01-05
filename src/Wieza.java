@@ -13,7 +13,7 @@ class Wieza extends Figura {
 
 
 
-        // pionowo
+        // Dla ruchu pionowego Y sie nie zmienia
         if (wspolrzedneY == wspolrzedneYRuchu) {
             int start, koniec;
 
@@ -40,10 +40,11 @@ class Wieza extends Figura {
                 boolean czyRuchNaKrola = figuraNaDocelowychWspolrzednych.czyJestemKrolem();
 
                 if (czyRuchNaKrola) {
-                    System.out.println("Backlog: Wieza szachuje krola");
+
+                    this.pierwszyRuch=  true;
                     return true;
                 } else if (this.gracz != figuraNaDocelowychWspolrzednych.gracz) {
-                    System.out.println("Backlog: Wieza bije figure!: ");
+                    this.pierwszyRuch = true;
                     return true;
                 } else {
                     return false;
@@ -51,7 +52,7 @@ class Wieza extends Figura {
             }
             else if(figuraNaDocelowychWspolrzednych == null)
             {
-                System.out.println("Backlog: Figura przemieszcza sie: ");
+                this.pierwszyRuch =true;
                 return true;
             }
 
@@ -63,7 +64,7 @@ class Wieza extends Figura {
         }
 
 
-        //poziomo
+        //Ruch poziomo, zmieniaja sie tylko wartosci Y
         if (wspolrzedneX == wspolrzedneXRuchu){
             int start, koniec;
 
@@ -79,7 +80,6 @@ class Wieza extends Figura {
             // Sprawdź, czy na drodze wieży nie ma żadnych innych figur
             for (int i = start; i < koniec; i++) {
                 if (szachownica.sprawdzFigure(wspolrzedneX, i) != null) {
-                    System.out.println("Backlog: na drodze stoi Figura: ");
                     return false;
                 }
             }
@@ -90,16 +90,19 @@ class Wieza extends Figura {
                 boolean czyRuchNaKrola = figuraNaDocelowychWspolrzednych.czyJestemKrolem();
 
                 if (czyRuchNaKrola) {
-                    System.out.println("Backlog: Wieza szachuje krola");
+                    this.pierwszyRuch = true;
                     return true;
                 } else if (this.gracz != figuraNaDocelowychWspolrzednych.gracz) {
+                    this.pierwszyRuch = true;
                     return true;
                 } else {
                     return false;
                 }
             }
-            else if(figuraNaDocelowychWspolrzednych == null) return true;
-
+            else if(figuraNaDocelowychWspolrzednych == null) {
+                this.pierwszyRuch= true;
+                return true;
+            }
 
             else return false;
 

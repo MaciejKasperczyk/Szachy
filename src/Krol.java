@@ -19,6 +19,8 @@ class Krol extends Figura {
                 if(absX == 0 && absY == 0){
                     return false;
                 }
+
+                this.pierwszyRuch = true;
                 return true;
             }
 

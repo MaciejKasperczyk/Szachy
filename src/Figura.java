@@ -95,9 +95,9 @@ public Kolor zwrocKolor()
         if (kukla != null) {
             this.zbijPionka(kukla);
         }
+        System.out.println("Ruch: " + this.toString() + " z (" + zwrocX() + ", " + zwrocY() + ") na (" + wspolrzedneXRuchu + ", " + wspolrzedneYRuchu + ")");
 
         szachownica.szachownicaUmiescFigure(this, wspolrzedneXRuchu, wspolrzedneYRuchu);
-        System.out.println("Ruch: " + this.toString() + " z (" + wspolrzedneX + ", " + wspolrzedneY + ") na (" + wspolrzedneXRuchu + ", " + wspolrzedneYRuchu + ")");
     }
 
     public void zbijPionka(Figura zbityPionek) {
