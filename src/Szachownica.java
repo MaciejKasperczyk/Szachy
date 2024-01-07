@@ -27,14 +27,20 @@ public class Szachownica {
         return Figura.zwrocWszystkieFigury();
     }
 
-    public void szachownicaWyswietl(){
-         for (int i = 0; i<8;i++)System.out.print("| "+i+" |");
+    public void szachownicaWyswietl() {
+        System.out.print("     "); // Dodatkowa przestrzeń dla nagłówków kolumn
+        for (int i = 0; i < 8; i++) {
+            System.out.print("| " + i + " |"); // Nagłówki kolumn
+        }
         System.out.println();
-        for (int szachownicaX = 0; szachownicaX < zwrocDlugoscX(); szachownicaX++){
-            for (int szachownicaY = 0; szachownicaY < zwrocDlugoscY(); szachownicaY++){
-                if (szachownica[szachownicaX][szachownicaY] == null)
+
+        for (int szachownicaX = 0; szachownicaX < zwrocDlugoscX(); szachownicaX++) {
+            System.out.print("| " + szachownicaX + " |"); // Wyświetlanie numeru wiersza na początku każdego wiersza
+
+            for (int szachownicaY = 0; szachownicaY < zwrocDlugoscY(); szachownicaY++) {
+                if (szachownica[szachownicaX][szachownicaY] == null) {
                     System.out.print("     ");
-                else{
+                } else {
                     if (szachownica[szachownicaX][szachownicaY] instanceof Pionek)
                         System.out.print("| P |");
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Skoczek)
@@ -51,13 +57,17 @@ public class Szachownica {
                         System.out.print("x");
                 }
             }
+
+            System.out.print("| " + szachownicaX + " |"); // Wyświetlanie numeru wiersza na końcu każdego wiersza
             System.out.println();
-
         }
-        for (int i = 0; i<8;i++)System.out.print("| "+i+" |");
 
+        System.out.print("     "); // Dodatkowa przestrzeń dla stopki kolumn
+        for (int i = 0; i < 8; i++) {
+            System.out.print("| " + i + " |"); // Stopka kolumn
+        }
         System.out.println();
-     }
+    }
 
         public int zwrocDlugoscX(){
             return szachownica[0].length;
@@ -83,6 +93,9 @@ public class Szachownica {
     }
     public Figura sprawdzFigure(int x, int y)
     {
+        if (x < 0 || x >= zwrocDlugoscX() || y < 0 || y >= zwrocDlugoscY()) {
+            return null; // Zwraca null, jeśli współrzędne są poza zakresem
+        }
         return szachownica[x][y];
     }
 

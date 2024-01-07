@@ -12,38 +12,31 @@ class Hetman extends Figura{
         int wspolrzedneX = this.zwrocX();
         int wspolrzedneY = this.zwrocY();
 
-
         // Sprawdź, czy ruch jest pionowy, poziomy lub po skosie
-        if (wspolrzedneX == wspolrzedneXRuchu || wspolrzedneY == wspolrzedneYRuchu || Math.abs(wspolrzedneXRuchu - wspolrzedneX) == Math.abs(wspolrzedneYRuchu - wspolrzedneY)) {
-            int deltaX = (wspolrzedneXRuchu - wspolrzedneX > 0) ? 1 : (wspolrzedneXRuchu - wspolrzedneX < 0) ? -1 : 0;
-            int deltaY = (wspolrzedneYRuchu - wspolrzedneY > 0) ? 1 : (wspolrzedneYRuchu - wspolrzedneY < 0) ? -1 : 0;
+        if (wspolrzedneX == wspolrzedneXRuchu || wspolrzedneY == wspolrzedneYRuchu ||
+                Math.abs(wspolrzedneXRuchu - wspolrzedneX) == Math.abs(wspolrzedneYRuchu - wspolrzedneY)) {
+
+            int deltaX = Integer.compare(wspolrzedneXRuchu, wspolrzedneX);
+            int deltaY = Integer.compare(wspolrzedneYRuchu, wspolrzedneY);
 
             int x = wspolrzedneX + deltaX;
             int y = wspolrzedneY + deltaY;
 
             // Sprawdź, czy na drodze hetmana nie ma żadnych innych figur
-            while ((x != wspolrzedneXRuchu || y != wspolrzedneYRuchu) && (x != wspolrzedneXRuchu || y != wspolrzedneYRuchu)) {
+            while (x != wspolrzedneXRuchu || y != wspolrzedneYRuchu) {
                 if (szachownica.sprawdzFigure(x, y) != null) {
-
                     return false;
                 }
                 x += deltaX;
                 y += deltaY;
             }
 
-            // Sprawdź, czy na docelowych współrzędnych jest figura przeciwnika
+            // Ruch jest możliwy, jeśli pole docelowe jest puste lub zajęte przez figurę przeciwnika
             Figura figuraNaDocelowychWspolrzednych = szachownica.sprawdzFigure(wspolrzedneXRuchu, wspolrzedneYRuchu);
-
-           if(figuraNaDocelowychWspolrzednych != null && this.gracz != figuraNaDocelowychWspolrzednych.gracz){
-               return true;
-
-            } else {
-                return true; // Dozwolony pusty ruch
-            }
-        } else {
-
-            return false;
+            return figuraNaDocelowychWspolrzednych == null || figuraNaDocelowychWspolrzednych.zwrocGracza() != this.gracz;
         }
+
+        return false; // Ruch nie jest możliwy
     }
 
 

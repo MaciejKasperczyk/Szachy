@@ -71,20 +71,80 @@ public class Gra {
                         else System.out.println(ruchCzarnych+" Wpisz X a nastepnie Y figury ktorą chcesz ruszyć: ");
 
 
-                                int wybranaWspolrzednaX = wybor.nextInt();
-                                int wybranaWspolrzednaY = wybor.nextInt();
+                        int wybranaWspolrzednaX = wybor.nextInt();
+                        int wybranaWspolrzednaY = wybor.nextInt();
 
                         Figura wybranaFigura = szachownica.sprawdzFigure(wybranaWspolrzednaX, wybranaWspolrzednaY);
 
 
 
                         if (wybranaFigura != null && wybranaFigura.zwrocGracza() == aktualnyGracz) {
+
                                 System.out.println("Wybrales: "+ wybranaFigura.toString() );
                                 System.out.println("Wpisz X a nastepnie Y pola, na które chcesz ruszyć figura: ");
                                 int nastepnyRuchX = wybor.nextInt();
                                 int nastepnyRuchY = wybor.nextInt();
+                                Figura kukla = szachownica.sprawdzFigure(nastepnyRuchX,nastepnyRuchY);
+                                int gracz = wybranaFigura.gracz;
 
-                                if (wybranaFigura.zwrocX() ==  nastepnyRuchX && wybranaFigura.zwrocY() == nastepnyRuchY)
+                                if(wybranaFigura instanceof Krol && kukla instanceof Wieza)
+                                {
+                                        // Obliczenia
+                                        int stareWspolrzedneXKrola = wybranaFigura.zwrocX();
+                                        int stareWspolrzedneYKrola = wybranaFigura.zwrocY();
+                                        int stareWspolrzedneXWiezy = kukla.zwrocX();
+                                        int stareWspolrzedneYWiezy = kukla.zwrocY();
+                                        boolean czyWiezaSieRuszyla = kukla.pierwszyRuch;
+                                        boolean czyKrolSieRuszyl = wybranaFigura.pierwszyRuch;
+                                        Kolor kolor = wybranaFigura.zwrocKolor();
+
+                                        int noweWspolrzedneWiezyY,noweWspolrzedneKrolaY;
+                                        System.out.println("1");
+                                        if(!czyKrolSieRuszyl && !czyWiezaSieRuszyla){
+
+                                        if(stareWspolrzedneYWiezy ==0)
+                                        {
+                                                noweWspolrzedneWiezyY = 2;
+                                                noweWspolrzedneKrolaY = 1;
+                                                System.out.println("2");
+                                        }
+                                        else
+                                        {
+                                                noweWspolrzedneKrolaY =6;
+                                                noweWspolrzedneWiezyY =5;
+                                                System.out.println("3");
+                                        }
+
+                                        //
+                                        System.out.println("4");
+                                        wybranaFigura.usunPionek();
+                                        kukla.usunPionek();
+                                        System.out.println("5");
+                                        new Krol(szachownica, stareWspolrzedneXKrola, noweWspolrzedneKrolaY, kolor, gracz);
+                                        new Wieza(szachownica, stareWspolrzedneXWiezy, noweWspolrzedneWiezyY, kolor, gracz);
+                                                Figura kukla2 = szachownica.sprawdzFigure(stareWspolrzedneXKrola,noweWspolrzedneKrolaY);
+                                                Figura kukla3 = szachownica.sprawdzFigure(stareWspolrzedneXWiezy,noweWspolrzedneWiezyY);
+                                                kukla2.pierwszyRuch = true;
+                                                kukla3.pierwszyRuch = true;
+                                        System.out.println("Roszada");
+
+
+                                        switch (aktualnyGracz){
+                                                case 1:
+                                                        aktualnyGracz = 0;
+                                                        break;
+                                                case 0:
+                                                        aktualnyGracz = 1;
+                                                        break;
+                                                default:
+                                                        break;
+                                        }
+
+                                        }
+
+                                }
+
+                                else if (wybranaFigura.zwrocX() ==  nastepnyRuchX && wybranaFigura.zwrocY() == nastepnyRuchY)
                                 {
                                         System.out.println("Nie mozesz poruszyc sie w miejscu!");
                                 }
@@ -152,6 +212,7 @@ public class Gra {
                                        else{
                                         // wykonanie ruchu
                                         wybranaFigura.ruchFigura(nastepnyRuchX, nastepnyRuchY);
+                                        System.out.println("10");
 
                                                 // zamiana gracza
                                         switch (aktualnyGracz){
@@ -167,20 +228,24 @@ public class Gra {
 
                                         boolean bialyKrolWSzachu = false;
                                         boolean czarnyKrolWSzachu = false;
-
+                                                System.out.println("11");
                                         for (Figura figura : szachownica.getFigury()) {
                                                 if (figura instanceof Krol) {
+                                                        System.out.println("12");
                                                         if (figura.zwrocKolor() == Kolor.BIALY && figura.czySzach()) {
+                                                                System.out.println("13");
                                                                 bialyKrolWSzachu = true;
                                                         } else if (figura.zwrocKolor() == Kolor.CZARNY && figura.czySzach()) {
+                                                                System.out.println("14");
                                                                 czarnyKrolWSzachu = true;
                                                         }
                                                 }
                                         }
-
+                                                System.out.println("15");
                                         if (bialyKrolWSzachu) {
                                                 System.out.println("Biały król jest w szachu!");
                                                 if (czySzachMat(aktualnyGracz)) {
+                                                        System.out.println("16");
                                                         System.out.println("Szach-mat! Gracz " + (aktualnyGracz == 1 ? "czarnych" : "białych") + " wygrywa.");
                                                         koniecGry = true;
                                                 }
@@ -188,13 +253,15 @@ public class Gra {
                                         if (czarnyKrolWSzachu) {
                                                 System.out.println("Czarny król jest w szachu!");
                                                 if (czySzachMat(aktualnyGracz)) {
+                                                        System.out.println("19");
                                                         System.out.println("Szach-mat! Gracz " + (aktualnyGracz == 1 ? "czarnych" : "białych") + " wygrywa.");
                                                         koniecGry = true;
                                                 }
+                                                System.out.println("18");
 
                                         }}
 
-
+                                        System.out.println("17");
 
 
 
@@ -290,12 +357,34 @@ public class Gra {
                 return false; // Król nie jest w szachu
         }
         private boolean czyPoleJestSzachowane(int x, int y, int graczPrzeciwnika) {
+                System.out.println("Sprawdzam pole szachowane");
                 for (Figura figura : szachownica.getFigury()) {
-                        if (figura.zwrocGracza() == graczPrzeciwnika && figura.mozliwyRuch(x, y)) {
-                                return true;
+                        if (figura != null && figura.zwrocGracza() == graczPrzeciwnika) {
+                                // Sprawdź, czy figura może zaatakować dane pole
+                                if (figura.mozliwyRuch(x, y)) {
+                                        // Dodatkowa weryfikacja dla hetmana, aby upewnić się, że nie "przeskakuje" przez inne figury
+                                        if (figura instanceof Hetman) {
+                                                int deltaX = Integer.compare(x, figura.zwrocX());
+                                                int deltaY = Integer.compare(y, figura.zwrocY());
+                                                int testX = figura.zwrocX() + deltaX;
+                                                int testY = figura.zwrocY() + deltaY;
+                                                while (testX != x || testY != y) {
+                                                        if (szachownica.sprawdzFigure(testX, testY) != null) {
+                                                                break; // Jest inna figura na drodze hetmana
+                                                        }
+                                                        testX += deltaX;
+                                                        testY += deltaY;
+                                                }
+                                                if (testX == x && testY == y) {
+                                                        return true; // Hetman szachuje pole
+                                                }
+                                        } else {
+                                                return true; // Inna figura szachuje pole
+                                        }
+                                }
                         }
                 }
-                return false;
+                return false; // Pole nie jest szachowane
         }
 
         private int przeciwnyGracz(int aktualnyGracz) {
