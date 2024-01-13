@@ -68,10 +68,6 @@ public int zwrocGracza()
 {
     return gracz;
 }
-public Szachownica zwrocSzachownice()
-{
-    return  szachownica;
-}
 
 
 
