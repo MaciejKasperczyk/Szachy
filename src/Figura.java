@@ -91,7 +91,7 @@ public Kolor zwrocKolor()
         if (kukla != null) {
             this.zbijPionka(kukla);
         }
-        System.out.println("Ruch: " + this.toString() + " z (" + zwrocX() + ", " + zwrocY() + ") na (" + wspolrzedneXRuchu + ", " + wspolrzedneYRuchu + ")");
+        System.out.println("Ruch: " + this.toString() + " z (" + (zwrocX()+1) + ", " + (zwrocY()+1) + ") na (" + (wspolrzedneXRuchu+1) + ", " + (wspolrzedneYRuchu+1) + ")");
 
         szachownica.szachownicaUmiescFigure(this, wspolrzedneXRuchu, wspolrzedneYRuchu);
     }
@@ -99,7 +99,7 @@ public Kolor zwrocKolor()
     public void zbijPionka(Figura zbityPionek) {
         if (!zbityPionek.czyJestemKrolem()) {
             zbityPionek.usunPionek();
-            System.out.println("Zbicie figury: " + zbityPionek.getClass().getSimpleName() + " na (" + zbityPionek.zwrocX() + ", " + zbityPionek.zwrocY() + ")");
+            System.out.println("Zbicie figury: " + zbityPionek.getClass().getSimpleName() + " na (" + (zbityPionek.zwrocX()+1) + ", " + (zbityPionek.zwrocY()+1) + ")");
         }
     }
      public boolean mozliwyRuch(int wspolrzedneX,int wspolrzedneY)

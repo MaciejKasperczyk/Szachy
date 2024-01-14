@@ -71,8 +71,8 @@ public class Gra {
                         else System.out.println(ruchCzarnych+" Wpisz X a nastepnie Y figury ktorą chcesz ruszyć: ");
 
 
-                        int wybranaWspolrzednaX = wybor.nextInt();
-                        int wybranaWspolrzednaY = wybor.nextInt();
+                        int wybranaWspolrzednaX = wybor.nextInt()-1;
+                        int wybranaWspolrzednaY = wybor.nextInt()-1;
 
                         Figura wybranaFigura = szachownica.sprawdzFigure(wybranaWspolrzednaX, wybranaWspolrzednaY);
 
@@ -82,8 +82,8 @@ public class Gra {
 
                                 System.out.println("Wybrales: "+ wybranaFigura.toString() );
                                 System.out.println("Wpisz X a nastepnie Y pola, na które chcesz ruszyć figura: ");
-                                int nastepnyRuchX = wybor.nextInt();
-                                int nastepnyRuchY = wybor.nextInt();
+                                int nastepnyRuchX = wybor.nextInt()-1;
+                                int nastepnyRuchY = wybor.nextInt()-1;
                                 Figura kukla = szachownica.sprawdzFigure(nastepnyRuchX,nastepnyRuchY);
                                 int gracz = wybranaFigura.gracz;
 

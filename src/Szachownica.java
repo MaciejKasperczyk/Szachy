@@ -34,13 +34,13 @@ public class Szachownica {
 
 
         System.out.print("     "); // Dodatkowa przestrzeń dla nagłówków kolumn
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 9; i++) {
             System.out.print("| " + i + " |"); // Nagłówki kolumn
         }
         System.out.println();
 
         for (int szachownicaX = 0; szachownicaX < zwrocDlugoscX(); szachownicaX++) {
-            System.out.print("| " + szachownicaX + " |"); // Wyświetlanie numeru wiersza na początku każdego wiersza
+            System.out.print("| " + (szachownicaX+1) + " |"); // Wyświetlanie numeru wiersza na początku każdego wiersza
 
             for (int szachownicaY = 0; szachownicaY < zwrocDlugoscY(); szachownicaY++) {
                 if (szachownica[szachownicaX][szachownicaY] == null) {
@@ -75,12 +75,12 @@ public class Szachownica {
                 }
             }
 
-            System.out.print("| " + szachownicaX + " |"); // Wyświetlanie numeru wiersza na końcu każdego wiersza
+            System.out.print("| " + (szachownicaX+1) + " |"); // Wyświetlanie numeru wiersza na końcu każdego wiersza
             System.out.println();
         }
 
         System.out.print("     "); // Dodatkowa przestrzeń dla stopki kolumn
-        for (int i = 0; i < 8; i++) {
+        for (int i = 1; i < 9; i++) {
             System.out.print("| " + i + " |"); // Stopka kolumn
         }
         System.out.println();
