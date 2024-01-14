@@ -4,7 +4,9 @@ import java.util.LinkedList;
 
 public class Szachownica {
 
+    public static final String ANSI_GRAY = "\u001B[37m";
 
+    public static final String ANSI_RESET = "\u001B[0m";
     private Figura[][] szachownica;
 
 
@@ -28,6 +30,9 @@ public class Szachownica {
     }
 
     public void szachownicaWyswietl() {
+
+
+
         System.out.print("     "); // Dodatkowa przestrzeń dla nagłówków kolumn
         for (int i = 0; i < 8; i++) {
             System.out.print("| " + i + " |"); // Nagłówki kolumn
@@ -41,17 +46,29 @@ public class Szachownica {
                 if (szachownica[szachownicaX][szachownicaY] == null) {
                     System.out.print("     ");
                 } else {
-                    if (szachownica[szachownicaX][szachownicaY] instanceof Pionek)
+                    if (szachownica[szachownicaX][szachownicaY] instanceof Pionek  && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
+                        System.out.print(ANSI_GRAY + "| P |" + ANSI_RESET);
+                    else if(szachownica[szachownicaX][szachownicaY] instanceof Pionek && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
                         System.out.print("| P |");
-                    else if (szachownica[szachownicaX][szachownicaY] instanceof Skoczek)
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Skoczek && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0 )
+                        System.out.print(ANSI_GRAY + "| S |" + ANSI_RESET);
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Skoczek && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
                         System.out.print("| S |");
-                    else if (szachownica[szachownicaX][szachownicaY] instanceof Hetman)
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Hetman && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
+                        System.out.print(ANSI_GRAY + "| D |" + ANSI_RESET);
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Hetman && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
                         System.out.print("| D |");
-                    else if (szachownica[szachownicaX][szachownicaY] instanceof Krol)
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Krol && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
+                        System.out.print(ANSI_GRAY + "| K |" + ANSI_RESET);
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Krol && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
                         System.out.print("| K |");
-                    else if (szachownica[szachownicaX][szachownicaY] instanceof Wieza)
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Wieza && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
+                        System.out.print(ANSI_GRAY +  "| W |" + ANSI_RESET);
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Wieza && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
                         System.out.print("| W |");
-                    else if (szachownica[szachownicaX][szachownicaY] instanceof Goniec)
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Goniec && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
+                        System.out.print( ANSI_GRAY + "| G |" + ANSI_RESET);
+                    else if (szachownica[szachownicaX][szachownicaY] instanceof Goniec && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
                         System.out.print("| G |");
                     else
                         System.out.print("x");
