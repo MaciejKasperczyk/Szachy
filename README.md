@@ -29,5 +29,4 @@ Twórcy projektów: Maciej Kasperczyk, Matuesz Krzykawski grupa 2, Infomatyka ni
 8. SzachMat
 
 # Błędy gry:
-1. Szachowany król, odskakuje na inne pole, natomiast może wrócic na te pole z powrotem.
-2. Podczas Szachu, ruch inna figura jest mozliwy, mimo że nie wplynie on na szacha.
+1. Podczas Szachu, ruch inna figura jest mozliwy, mimo że nie wplynie on na szacha.
