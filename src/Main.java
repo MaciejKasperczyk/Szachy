@@ -1,4 +1,3 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 
 
 import java.util.Scanner;
@@ -10,10 +9,10 @@ public class Main {
         Gra gra1 = new Gra();
         System.out.println("Witaj w grze w szachy");
         do {
-            System.out.println("Wybierz:\n1 - zapoznanie się z zasadami gry\n2 - rozpocznij partię\n3 - zakończ program");
+            System.out.println("Wybierz:\n1 - zapoznanie się z gra\n2 - rozpocznij partię\n3 - zakończ program");
             byte x = tekst.nextByte();
             if (x==1){
-                System.out.println("Zasady gry .................");
+                System.out.println("Gre rozpoczyna gracz Bialy, szachownica zamiast pol [A-H] korzysta z tablicy [1-8], wiecej informacji w pliku README.md");
                 System.out.println(1);
             }
             else if (x==2) {
@@ -22,5 +21,6 @@ public class Main {
             else break;
         } while (true);
         System.out.println("Do zobaczenia!!!");
+        tekst.close();
     }
     }

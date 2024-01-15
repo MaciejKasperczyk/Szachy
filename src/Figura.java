@@ -12,13 +12,7 @@ public int gracz;
 private static LinkedList<Figura> wszystkieFigury = new LinkedList<>();
 
 
-     public Figura(Szachownica szachownica, Kolor kolor){
-         this.szachownica = szachownica;
-         this.kolor = kolor;
 
-         wspolrzedneX = -1;
-         wspolrzedneY = -1;
-     }
 
 
 
@@ -91,7 +85,6 @@ public Kolor zwrocKolor()
         if (kukla != null) {
             this.zbijPionka(kukla);
         }
-        System.out.println("Ruch: " + this.toString() + " z (" + (zwrocX()+1) + ", " + (zwrocY()+1) + ") na (" + (wspolrzedneXRuchu+1) + ", " + (wspolrzedneYRuchu+1) + ")");
 
         szachownica.szachownicaUmiescFigure(this, wspolrzedneXRuchu, wspolrzedneYRuchu);
     }
@@ -99,7 +92,7 @@ public Kolor zwrocKolor()
     public void zbijPionka(Figura zbityPionek) {
         if (!zbityPionek.czyJestemKrolem()) {
             zbityPionek.usunPionek();
-            System.out.println("Zbicie figury: " + zbityPionek.getClass().getSimpleName() + " na (" + (zbityPionek.zwrocX()+1) + ", " + (zbityPionek.zwrocY()+1) + ")");
+            System.out.println("Zbicie figury: " + zbityPionek.getClass().getSimpleName());
         }
     }
      public boolean mozliwyRuch(int wspolrzedneX,int wspolrzedneY)
