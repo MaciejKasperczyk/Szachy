@@ -1,10 +1,9 @@
-import java.util.Scanner;
+
 
 class Pionek extends Figura {
 
-    Scanner wybor = new Scanner(System.in);
 
-
+public boolean czyEnPassant = false;
     // Pionek dziedziczy
     public Pionek(Szachownica szachownica, int wspolrzedneX, int wspolrzedneY, Kolor kolor, int gracz) {
         super(szachownica, wspolrzedneX, wspolrzedneY, kolor, gracz);
@@ -29,42 +28,52 @@ class Pionek extends Figura {
         }
 
 
+
         Figura kukla = szachownica.sprawdzFigure(wspolrzedneXRuchu, wspolrzedneYRuchu);
-        if (szachownica.sprawdzFigure(wspolrzedneXRuchu, wspolrzedneYRuchu) == null) {
+        Figura figuraObok = szachownica.sprawdzFigure(wspolrzedneX, wspolrzedneYRuchu);
 
-            if (wspolrzedneXRuchu - wspolrzedneX == podwojnyRuch && wspolrzedneYRuchu == wspolrzedneY && !pierwszyRuch && szachownica.sprawdzFigure(wspolrzedneXRuchu - 1, wspolrzedneYRuchu) == null) {
-                this.pierwszyRuch = true;
-                return true;
+        if (figuraObok instanceof Pionek && figuraObok.gracz != this.gracz && figuraObok.pierwszyRuch && wspolrzedneXRuchu - wspolrzedneX == ruch && Math.abs(wspolrzedneYRuchu - wspolrzedneY) == 1 && ((Pionek) figuraObok).czyEnPassant) {
+            System.out.println("En passant");
+            szachownica.usunPionkaZPlanszy(figuraObok);
+            return true;
+        } else {
+            if (szachownica.sprawdzFigure(wspolrzedneXRuchu, wspolrzedneYRuchu) == null) {
 
-            } else if (wspolrzedneXRuchu - wspolrzedneX == ruch && wspolrzedneYRuchu == wspolrzedneY) {
+                if (wspolrzedneXRuchu - wspolrzedneX == podwojnyRuch && wspolrzedneYRuchu == wspolrzedneY && !pierwszyRuch && szachownica.sprawdzFigure(wspolrzedneXRuchu - 1, wspolrzedneYRuchu) == null) {
+                    this.pierwszyRuch = true;
+                    this.czyEnPassant = true;
+                    return true;
 
-                this.pierwszyRuch = true;
+                } else if (wspolrzedneXRuchu - wspolrzedneX == ruch && wspolrzedneYRuchu == wspolrzedneY) {
 
-                return true;
+                    this.pierwszyRuch = true;
+                    this.czyEnPassant = false;
+                    return true;
+                }
+
             }
-
-        }
-        // Zbicie innej figury, ruch do przodu o jedno pole
-        else if (kukla.gracz != this.gracz && szachownica.sprawdzFigure(wspolrzedneXRuchu, wspolrzedneYRuchu) != null) {
+            // Zbicie innej figury, ruch do przodu o jedno pole
+            else if (kukla.gracz != this.gracz && szachownica.sprawdzFigure(wspolrzedneXRuchu, wspolrzedneYRuchu) != null) {
 
 
-            if (wspolrzedneXRuchu - wspolrzedneX == ruch && (wspolrzedneYRuchu - wspolrzedneY == 1 || wspolrzedneYRuchu - wspolrzedneY == -1) && kukla.gracz != this.gracz) {
+                if (wspolrzedneXRuchu - wspolrzedneX == ruch && (wspolrzedneYRuchu - wspolrzedneY == 1 || wspolrzedneYRuchu - wspolrzedneY == -1) && kukla.gracz != this.gracz) {
 
-                this.pierwszyRuch = true;
+                    this.pierwszyRuch = true;
 
-                return true;
+                    return true;
+                }
+
+
+                return false;
+
             }
 
 
             return false;
 
+
         }
-
-        return false;
-
-
     }
-
 
 
 }

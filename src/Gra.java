@@ -69,12 +69,54 @@ public class Gra {
 
                 while (!koniecGry) {
                         szachownica.szachownicaWyswietl();
-                        if(aktualnyGracz==1)System.out.println(ruchBiałych + " Wpisz X a nastepnie Y figury ktorą chcesz ruszyć: ");
-                        else System.out.println(ruchCzarnych+" Wpisz X a nastepnie Y figury ktorą chcesz ruszyć: ");
+                        // ---- PAT ----
+                        if(czyPat(0) && czyPat(1) ) System.out.println("Pat, koniec gry!");
+
+                        else {
+                        if(aktualnyGracz==1)System.out.println(ruchBiałych + "Wpisz [A-H] a nastepnie [1-8] pola, na które chcesz ruszyć figura: ");
+                        else System.out.println(ruchCzarnych+"Wpisz [A-H] a nastepnie [1-8] pola, na które chcesz ruszyć figura: ");
 
                         try{
-                        int wybranaWspolrzednaX = wybor.nextInt()-1;
-                        int wybranaWspolrzednaY = wybor.nextInt()-1;
+                                String wybranaWspolrzednaYZnak = wybor.next();
+                                int wybranaWspolrzednaX = wybor.nextInt()-1;
+
+
+                        int wybranaWspolrzednaY;
+                        // dorobic by nie mozna bylo zbic krola xd
+
+                        switch (wybranaWspolrzednaYZnak) {
+                                case "A":
+                                        wybranaWspolrzednaY = 0;
+                                        break;
+                                case "B":
+                                        wybranaWspolrzednaY = 1;
+                                        break;
+                                case "C":
+                                        wybranaWspolrzednaY = 2;
+                                        break;
+                                case "D":
+                                        wybranaWspolrzednaY = 3;
+                                        break;
+                                case "E":
+                                        wybranaWspolrzednaY = 4;
+                                        break;
+                                case "F":
+                                        wybranaWspolrzednaY = 5;
+                                        break;
+                                case "G":
+                                        wybranaWspolrzednaY = 6;
+                                        break;
+                                case "H":
+                                        wybranaWspolrzednaY = 7;
+                                        break;
+                                default:
+                                        wybranaWspolrzednaY = 0;
+                                        break;
+                        }
+
+
+
+
 
                         Figura wybranaFigura = szachownica.sprawdzFigure(wybranaWspolrzednaX, wybranaWspolrzednaY);
 
@@ -83,11 +125,41 @@ public class Gra {
                         if (wybranaFigura != null && wybranaFigura.zwrocGracza() == aktualnyGracz) {
 
                                 System.out.println("Wybrales: "+ wybranaFigura.toString() );
-                                System.out.println("Wpisz X a nastepnie Y pola, na które chcesz ruszyć figura: ");
+                                System.out.println("Wpisz [A-H] a nastepnie [1-8] pola, na które chcesz ruszyć figura: ");
+                                int nastepnyRuchY;
 
-                                        // -1 by wygladalo to schludniej niz tablica 0-7
+
+                                String nastepnyRuchYZnak = wybor.next();
+                                switch (nastepnyRuchYZnak) {
+                                        case "A":
+                                                nastepnyRuchY = 0;
+                                                break;
+                                        case "B":
+                                                nastepnyRuchY = 1;
+                                                break;
+                                        case "C":
+                                                nastepnyRuchY =2;
+                                                break;
+                                        case "D":
+                                                nastepnyRuchY = 3;
+                                                break;
+                                        case "E":
+                                                nastepnyRuchY = 4;
+                                                break;
+                                        case "F":
+                                                nastepnyRuchY = 5;
+                                                break;
+                                        case "G":
+                                                nastepnyRuchY = 6;
+                                                break;
+                                        case "H":
+                                                nastepnyRuchY =7;
+                                                break;
+                                        default:
+                                                nastepnyRuchY = 0;
+                                                break;
+                                }
                                         int nastepnyRuchX = wybor.nextInt() - 1;
-                                        int nastepnyRuchY = wybor.nextInt() - 1;
 
 
                                 int gracz = wybranaFigura.gracz;
@@ -96,42 +168,14 @@ public class Gra {
                                 Figura kukla = szachownica.sprawdzFigure(nastepnyRuchX,nastepnyRuchY);
 
 
-
-                                // ---- ROSZADA ----
-                               if(wybranaFigura instanceof Krol && kukla instanceof Wieza)
-                                {
-                                        roszada(wybranaFigura,kukla,szachownica,gracz);
-                                        // zamiana gracza
-                                        switch (aktualnyGracz){
-                                                case 1:
-                                                        aktualnyGracz = 0;
-                                                        break;
-                                                case 0:
-                                                        aktualnyGracz = 1;
-                                                        break;
-                                                default:
-                                                        break;
-                                        }
-
-                                }
-
-                                // ---- RUCH W MIEJSCU ----
-                                else if (wybranaFigura.zwrocX() ==  nastepnyRuchX && wybranaFigura.zwrocY() == nastepnyRuchY)System.out.println("Nie mozesz poruszyc sie w miejscu!");
+                                if(!(kukla instanceof Krol) || kukla == null) {
 
 
-                                // ----  KRÓL NA SZACHOWANE POLE ----
-                                else if(wybranaFigura instanceof Krol && czyPoleJestSzachowane(nastepnyRuchX, nastepnyRuchY, przeciwnyGracz(aktualnyGracz))) System.out.println("Nie możesz przenieść króla na szachowane pole.");
-
-
-                                // ----  FIGURA JEST W STANIE WYKONAĆ RUCH ----
-                                else if (wybranaFigura.mozliwyRuch(nastepnyRuchX, nastepnyRuchY)) {
-
-                                        // ---- PIONEK MOZE ZMIENIC SIE W INNA FIGURE ----
-                                        if (wybranaFigura instanceof Pionek && (nastepnyRuchX == 0 || nastepnyRuchX == 7))
-                                        {
-                                                zmienPionkaNaInnaFigure(wybranaFigura,szachownica,nastepnyRuchX,nastepnyRuchY, wybor);
+                                        // ---- ROSZADA ----
+                                        if (wybranaFigura instanceof Krol && kukla instanceof Wieza) {
+                                                roszada(wybranaFigura, kukla, szachownica, gracz);
                                                 // zamiana gracza
-                                                switch (aktualnyGracz){
+                                                switch (aktualnyGracz) {
                                                         case 1:
                                                                 aktualnyGracz = 0;
                                                                 break;
@@ -141,61 +185,94 @@ public class Gra {
                                                         default:
                                                                 break;
                                                 }
+
                                         }
 
-
-                                        // ---- ZADNE Z POWYZSZYCH A RUCH MOZLIWY ----
-                                       else{
-                                                boolean bialyKrolWSzachu = false;
-                                                boolean czarnyKrolWSzachu = false;
+                                        // ---- RUCH W MIEJSCU ----
+                                        else if (wybranaFigura.zwrocX() == nastepnyRuchX && wybranaFigura.zwrocY() == nastepnyRuchY)
+                                                System.out.println("Nie mozesz poruszyc sie w miejscu!");
 
 
-                                        wybranaFigura.ruchFigura(nastepnyRuchX, nastepnyRuchY);
-
-                                                // zamiana gracza
-                                        switch (aktualnyGracz){
-                                                case 1:
-                                                        aktualnyGracz = 0;
-                                                        break;
-                                                case 0:
-                                                        aktualnyGracz = 1;
-                                                        break;
-                                                default:
-                                                        break;
-                                        }
+                                                // ----  KRÓL NA SZACHOWANE POLE ----
+                                        else if (wybranaFigura instanceof Krol && czyPoleJestSzachowane(nastepnyRuchX, nastepnyRuchY, przeciwnyGracz(aktualnyGracz)))
+                                                System.out.println("Nie możesz przenieść króla na szachowane pole.");
 
 
-                                        // SPRAWDZENIE SZACHU
-                                        for (Figura figura : szachownica.getFigury()) {
-                                                if (figura instanceof Krol) {
-                                                        if (figura.zwrocKolor() == Kolor.BIALY && figura.czySzach()) {
-                                                                bialyKrolWSzachu = true;
-                                                        } else if (figura.zwrocKolor() == Kolor.CZARNY && figura.czySzach()) {
-                                                                czarnyKrolWSzachu = true;
+                                                // ----  FIGURA JEST W STANIE WYKONAĆ RUCH ----
+                                        else if (wybranaFigura.mozliwyRuch(nastepnyRuchX, nastepnyRuchY)) {
+
+                                                // ---- PIONEK MOZE ZMIENIC SIE W INNA FIGURE ----
+                                                if (wybranaFigura instanceof Pionek && (nastepnyRuchX == 0 || nastepnyRuchX == 7)) {
+                                                        zmienPionkaNaInnaFigure(wybranaFigura, szachownica, nastepnyRuchX, nastepnyRuchY, wybor);
+                                                        // zamiana gracza
+                                                        switch (aktualnyGracz) {
+                                                                case 1:
+                                                                        aktualnyGracz = 0;
+                                                                        break;
+                                                                case 0:
+                                                                        aktualnyGracz = 1;
+                                                                        break;
+                                                                default:
+                                                                        break;
                                                         }
                                                 }
-                                        }
-                                        if (bialyKrolWSzachu) {
-                                                System.out.println("Biały król jest w szachu!");
-                                                if (czySzachMat(aktualnyGracz)) {
-                                                        System.out.println("Szach-mat! Gracz " + (aktualnyGracz == 1 ? "czarnych" : "białych") + " wygrywa.");
-                                                        koniecGry = true;
+
+
+                                                // ---- ZADNE Z POWYZSZYCH A RUCH MOZLIWY ----
+                                                else {
+                                                        boolean bialyKrolWSzachu = false;
+                                                        boolean czarnyKrolWSzachu = false;
+
+
+                                                        wybranaFigura.ruchFigura(nastepnyRuchX, nastepnyRuchY);
+
+                                                        // zamiana gracza
+                                                        switch (aktualnyGracz) {
+                                                                case 1:
+                                                                        aktualnyGracz = 0;
+                                                                        break;
+                                                                case 0:
+                                                                        aktualnyGracz = 1;
+                                                                        break;
+                                                                default:
+                                                                        break;
+                                                        }
+
+
+                                                        // SPRAWDZENIE SZACHU
+                                                        for (Figura figura : szachownica.getFigury()) {
+                                                                if (figura instanceof Krol) {
+                                                                        if (figura.zwrocKolor() == Kolor.BIALY && figura.czySzach()) {
+                                                                                bialyKrolWSzachu = true;
+                                                                        } else if (figura.zwrocKolor() == Kolor.CZARNY && figura.czySzach()) {
+                                                                                czarnyKrolWSzachu = true;
+                                                                        }
+                                                                }
+                                                        }
+                                                        if (bialyKrolWSzachu) {
+                                                                System.out.println("Biały król jest w szachu!");
+                                                                if (czySzachMat(aktualnyGracz)) {
+                                                                        System.out.println("Szach-mat! Gracz " + (aktualnyGracz == 1 ? "czarnych" : "białych") + " wygrywa.");
+                                                                        koniecGry = true;
+                                                                }
+                                                        }
+                                                        if (czarnyKrolWSzachu) {
+                                                                System.out.println("Czarny król jest w szachu!");
+                                                                if (czySzachMat(aktualnyGracz)) {
+                                                                        System.out.println("Szach-mat! Gracz " + (aktualnyGracz == 1 ? "czarnych" : "białych") + " wygrywa.");
+                                                                        koniecGry = true;
+                                                                }
+
+
+                                                        }
                                                 }
+
+
                                         }
-                                        if (czarnyKrolWSzachu) {
-                                                System.out.println("Czarny król jest w szachu!");
-                                                if (czySzachMat(aktualnyGracz)) {
-                                                        System.out.println("Szach-mat! Gracz " + (aktualnyGracz == 1 ? "czarnych" : "białych") + " wygrywa.");
-                                                        koniecGry = true;
-                                                }
-
-                                        }}
+                                }
 
 
-
-
-
-                                } else {
+                                else {
                                         System.out.println("Nieprawidlowy ruch, sprobuj ponownie!");
                                 }
                         } else {
@@ -211,81 +288,10 @@ public class Gra {
                                 System.out.println("Wystąpił błąd: " + e.getMessage());
                         }
                 }
-
-        }
-        private boolean wykonajRuchKrolaLubZakonczSzach() {
-                while (true) {
-                        System.out.println("Wykonaj ruch królem lub figurą, która może zakończyć szach.");
-                        System.out.println("Wpisz X a następnie Y figury, którą chcesz ruszyć:");
-
-                        int wybranaWspolrzednaX = wybor.nextInt() - 1;
-                        int wybranaWspolrzednaY = wybor.nextInt() - 1;
-                        Figura wybranaFigura = szachownica.sprawdzFigure(wybranaWspolrzednaX, wybranaWspolrzednaY);
-
-                        if (wybranaFigura != null && wybranaFigura.zwrocGracza() == aktualnyGracz) {
-                                if (wybranaFigura instanceof Krol || mozeZakonczycSzach(wybranaFigura)) {
-                                        System.out.println("Wybrales: " + wybranaFigura.toString());
-                                        System.out.println("Wpisz X a następnie Y pola, na które chcesz ruszyć figurą:");
-
-                                        int nastepnyRuchX = wybor.nextInt() - 1;
-                                        int nastepnyRuchY = wybor.nextInt() - 1;
-
-                                        if (wybranaFigura.mozliwyRuch(nastepnyRuchX, nastepnyRuchY)) {
-                                                wybranaFigura.ruchFigura(nastepnyRuchX, nastepnyRuchY);
-                                                return true; // Ruch wykonany pomyślnie
-                                        } else {
-                                                System.out.println("Nieprawidłowy ruch, spróbuj ponownie.");
-                                        }
-                                } else {
-                                        System.out.println("Możesz ruszyć tylko królem lub figurą kończącą szach.");
                                 }
-                        } else {
-                                System.out.println("Nieprawidłowy wybór, spróbuj ponownie.");
-                        }
-                }
         }
-        private boolean mozeZakonczycSzach(Figura figura) {
-                int krolX = -1, krolY = -1;
-                // Znajdź pozycję króla aktualnego gracza
-                for (Figura f : szachownica.getFigury()) {
-                        if (f instanceof Krol && f.zwrocGracza() == aktualnyGracz) {
-                                krolX = f.zwrocX();
-                                krolY = f.zwrocY();
-                                break;
-                        }
-                }
 
-                // Sprawdź, czy figura może zbić figury atakujące króla
-                for (Figura atakujacaFigura : szachownica.getFigury()) {
-                        if (atakujacaFigura.zwrocGracza() != aktualnyGracz && atakujacaFigura.mozliwyRuch(krolX, krolY)) {
-                                if (figura.mozliwyRuch(atakujacaFigura.zwrocX(), atakujacaFigura.zwrocY())) {
-                                        return true; // Figura może zbić atakującą figurę
-                                }
-                        }
-                }
 
-                // Sprawdź, czy figura może zablokować atak na króla
-                for (Figura atakujacaFigura : szachownica.getFigury()) {
-                        if (atakujacaFigura.zwrocGracza() != aktualnyGracz && atakujacaFigura.mozliwyRuch(krolX, krolY)) {
-                                // Sprawdź czy można zablokować atak (dla figur innych niż skoczek)
-                                if (!(atakujacaFigura instanceof Skoczek)) {
-                                        int deltaX = Integer.compare(krolX, atakujacaFigura.zwrocX());
-                                        int deltaY = Integer.compare(krolY, atakujacaFigura.zwrocY());
-                                        int testX = atakujacaFigura.zwrocX() + deltaX;
-                                        int testY = atakujacaFigura.zwrocY() + deltaY;
-                                        while (testX != krolX || testY != krolY) {
-                                                if (figura.mozliwyRuch(testX, testY)) {
-                                                        return true; // Figura może zablokować atak
-                                                }
-                                                testX += deltaX;
-                                                testY += deltaY;
-                                        }
-                                }
-                        }
-                }
-
-                return false; // Nie znaleziono możliwości zakończenia szachu
-        }
 
 
 
@@ -323,6 +329,8 @@ public class Gra {
 
                 }
         }
+
+
         public void zmienPionkaNaInnaFigure(Figura wybranaFigura, Szachownica szachownica, int nastepnyRuchX, int nastepnyRuchY, Scanner wybor) {
                         int staryGracz = wybranaFigura.gracz;
 
@@ -354,12 +362,55 @@ public class Gra {
 
 
         }
+        public boolean czyPat(int gracz)
+        {
+                if(czySzach(gracz)) return false;
+                for (Figura figura : szachownica.getFigury()) {
+                        if (figura != null && figura.zwrocGracza() == gracz) {
+                                for (int x = 0; x < szachownica.zwrocDlugoscX(); x++) {
+                                        for (int y = 0; y < szachownica.zwrocDlugoscY(); y++) {
+                                                if (figura.mozliwyRuch(x, y)) {
+                                                        // Sprawdź, czy ruch nie spowoduje szachu dla własnego króla
+                                                        if (!czyRuchPowodujeSzach(figura, x, y, gracz)) {
+
+                                                                return false; // Istnieje legalny ruch, nie ma pata.
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                }
+
+                return true; // Żaden ruch nie jest możliwy, jest pat.
+
+
+                
+        }
+        private boolean czyRuchPowodujeSzach(Figura figura, int noweX, int noweY, int gracz) {
+                // Zapisz stan szachownicy
+                Figura temp = szachownica.sprawdzFigure(noweX, noweY);
+                int stareX = figura.zwrocX();
+                int stareY = figura.zwrocY();
+
+                // Wykonaj tymczasowy ruch
+                szachownica.szachownicaUmiescFigure(null, stareX, stareY);
+                szachownica.szachownicaUmiescFigure(figura, noweX, noweY);
+                // Sprawdź, czy po tym ruchu król aktualnego gracza jest w szachu
+                boolean wynik = czySzach(gracz);
+
+// Cofnij ruch
+                szachownica.szachownicaUmiescFigure(figura, stareX, stareY);
+                szachownica.szachownicaUmiescFigure(temp, noweX, noweY);
+
+                return wynik;
+        }
 
 
 
 
 
-        public boolean czySzachMat(int gracz) {
+
+                public boolean czySzachMat(int gracz) {
                 if (!czySzach(gracz)) {
                         return false; // Jeśli nie ma szachu, na pewno nie ma szach-matu.
 

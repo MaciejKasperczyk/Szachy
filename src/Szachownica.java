@@ -34,8 +34,8 @@ public class Szachownica {
 
 
         System.out.print("     "); // Dodatkowa przestrzeń dla nagłówków kolumn
-        for (int i = 1; i < 9; i++) {
-            System.out.print("| " + i + " |"); // Nagłówki kolumn
+        for (int i = 65; i < 73; i++) {
+            System.out.print("| " + (char)i + " |"); // Nagłówki kolumn
         }
         System.out.println();
 
@@ -47,29 +47,29 @@ public class Szachownica {
                     System.out.print("     ");
                 } else {
                     if (szachownica[szachownicaX][szachownicaY] instanceof Pionek  && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
-                        System.out.print(ANSI_GRAY + "| P |" + ANSI_RESET);
+                        System.out.print(ANSI_GRAY + "| "+(char)80+" |" + ANSI_RESET);
                     else if(szachownica[szachownicaX][szachownicaY] instanceof Pionek && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
-                        System.out.print("| P |");
+                        System.out.print("| "+(char)80+" |");
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Skoczek && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0 )
-                        System.out.print(ANSI_GRAY + "| S |" + ANSI_RESET);
+                        System.out.print(ANSI_GRAY + "| "+(char)83+" |" + ANSI_RESET);
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Skoczek && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
-                        System.out.print("| S |");
+                        System.out.print("| "+(char)83+" |");
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Hetman && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
-                        System.out.print(ANSI_GRAY + "| D |" + ANSI_RESET);
+                        System.out.print(ANSI_GRAY + "| "+(char)68+" |"+ ANSI_RESET);
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Hetman && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
-                        System.out.print("| D |");
+                        System.out.print("| "+(char)68+" |");
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Krol && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
-                        System.out.print(ANSI_GRAY + "| K |" + ANSI_RESET);
+                        System.out.print(ANSI_GRAY + "| "+(char)75+" |" + ANSI_RESET);
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Krol && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
-                        System.out.print("| K |");
+                        System.out.print("| "+(char)75+" |");
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Wieza && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
-                        System.out.print(ANSI_GRAY +  "| W |" + ANSI_RESET);
+                        System.out.print(ANSI_GRAY +  "| "+(char)87+" |" + ANSI_RESET);
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Wieza && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
-                        System.out.print("| W |");
+                        System.out.print("| "+(char)87+" |");
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Goniec && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 0)
-                        System.out.print( ANSI_GRAY + "| G |" + ANSI_RESET);
+                        System.out.print( ANSI_GRAY + "| "+(char)71+" |" + ANSI_RESET);
                     else if (szachownica[szachownicaX][szachownicaY] instanceof Goniec && szachownica[szachownicaX][szachownicaY].zwrocGracza() == 1)
-                        System.out.print("| G |");
+                        System.out.print("| "+(char)71+" |");
                     else
                         System.out.print("x");
                 }
@@ -80,8 +80,8 @@ public class Szachownica {
         }
 
         System.out.print("     "); // Dodatkowa przestrzeń dla stopki kolumn
-        for (int i = 1; i < 9; i++) {
-            System.out.print("| " + i + " |"); // Stopka kolumn
+        for (int i = 65; i < 73; i++) {
+            System.out.print("| " + (char)i + " |"); // Nagłówki kolumn
         }
         System.out.println();
     }
