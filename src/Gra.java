@@ -225,7 +225,7 @@ public class Gra {
                                                         boolean bialyKrolWSzachu = false;
                                                         boolean czarnyKrolWSzachu = false;
 
-                                                        wybranaFigura.zapiszRuchDoPliku(wybranaWspolrzednaX,wybranaWspolrzednaYZnak,nastepnyRuchX,nastepnyRuchYZnak,1);
+                                                        wybranaFigura.zapiszRuchDoPliku(wybranaFigura,nastepnyRuchX,nastepnyRuchYZnak,1);
                                                         wybranaFigura.ruchFigura(nastepnyRuchX, nastepnyRuchY);
 
 

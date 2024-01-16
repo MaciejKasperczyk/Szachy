@@ -1,3 +1,4 @@
+import java.io.BufferedWriter;
 import java.util.LinkedList;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -105,16 +106,17 @@ public Kolor zwrocKolor()
      }
 
 
-    public void zapiszRuchDoPliku(int poczatkoweX, String poczatkoweYZnak, int koncoweX, String koncoweYZnak, int mode) {
+    public void zapiszRuchDoPliku(Figura wybranaFigura ,int koncoweX, String koncoweYZnak, int mode) {
         try {
             // ---- Tablica dziala na zakresie [0-7] dlatego trzeba dodac o jeden.
-            poczatkoweX++;
             koncoweX++;
 
-            FileWriter writer = new FileWriter("Partia.txt", true);
+            FileWriter writer = new FileWriter("Nowa_partia.txt",true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            bufferedWriter.write(wybranaFigura.toString().charAt(0));        //Znak figury
+            bufferedWriter.write(koncoweX+koncoweYZnak+"\n");            //Na którą pozycję
 
-
-            writer.close();
+            bufferedWriter.close();
         } catch (IOException e) {
             System.out.println("Wystąpił błąd podczas zapisu do pliku: " + e.getMessage());
         }
