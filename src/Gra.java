@@ -1,4 +1,6 @@
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -223,8 +225,9 @@ public class Gra {
                                                         boolean bialyKrolWSzachu = false;
                                                         boolean czarnyKrolWSzachu = false;
 
-
+                                                        wybranaFigura.zapiszRuchDoPliku(wybranaWspolrzednaX,wybranaWspolrzednaYZnak,nastepnyRuchX,nastepnyRuchYZnak,1);
                                                         wybranaFigura.ruchFigura(nastepnyRuchX, nastepnyRuchY);
+
 
                                                         // zamiana gracza
                                                         switch (aktualnyGracz) {

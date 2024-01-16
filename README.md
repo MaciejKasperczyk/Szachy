@@ -28,6 +28,7 @@ Twórcy projektów: Maciej Kasperczyk, Matuesz Krzykawski grupa 2, Infomatyka ni
 7. Szach
 8. SzachMat
 9. En Passant
+10. Zapisanie pliku Partia.txt
 
 # Błędy gry:
 1. Podczas Szachu, ruch inna figura jest mozliwy, mimo że nie wplynie on na szacha.

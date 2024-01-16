@@ -1,5 +1,6 @@
 import java.util.LinkedList;
-
+import java.io.FileWriter;
+import java.io.IOException;
 class Figura {
 public int wspolrzedneX;
 public int wspolrzedneY;
@@ -93,6 +94,7 @@ public Kolor zwrocKolor()
         if (!zbityPionek.czyJestemKrolem()) {
             zbityPionek.usunPionek();
             System.out.println("Zbicie figury: " + zbityPionek.getClass().getSimpleName());
+
         }
     }
      public boolean mozliwyRuch(int wspolrzedneX,int wspolrzedneY)
@@ -103,6 +105,20 @@ public Kolor zwrocKolor()
      }
 
 
+    public void zapiszRuchDoPliku(int poczatkoweX, String poczatkoweYZnak, int koncoweX, String koncoweYZnak, int mode) {
+        try {
+            // ---- Tablica dziala na zakresie [0-7] dlatego trzeba dodac o jeden.
+            poczatkoweX++;
+            koncoweX++;
+
+            FileWriter writer = new FileWriter("Partia.txt", true);
+
+
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Wystąpił błąd podczas zapisu do pliku: " + e.getMessage());
+        }
+    }
 
 }
 
