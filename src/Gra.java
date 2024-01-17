@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Gra {
         private Szachownica szachownica;
-        private int aktualnyGracz;
+        public int aktualnyGracz;
 
         Scanner wybor = new Scanner(System.in);
 
@@ -88,27 +88,35 @@ public class Gra {
 
                         switch (wybranaWspolrzednaYZnak) {
                                 case "A":
+                                case "a":
                                         wybranaWspolrzednaY = 0;
                                         break;
                                 case "B":
+                                case "b":
                                         wybranaWspolrzednaY = 1;
                                         break;
                                 case "C":
+                                case "c":
                                         wybranaWspolrzednaY = 2;
                                         break;
                                 case "D":
+                                case "d":
                                         wybranaWspolrzednaY = 3;
                                         break;
                                 case "E":
+                                case "e":
                                         wybranaWspolrzednaY = 4;
                                         break;
                                 case "F":
+                                case "f":
                                         wybranaWspolrzednaY = 5;
                                         break;
                                 case "G":
+                                case "g":
                                         wybranaWspolrzednaY = 6;
                                         break;
                                 case "H":
+                                case "h":
                                         wybranaWspolrzednaY = 7;
                                         break;
                                 default:
@@ -134,27 +142,35 @@ public class Gra {
                                 String nastepnyRuchYZnak = wybor.next();
                                 switch (nastepnyRuchYZnak) {
                                         case "A":
+                                        case "a":
                                                 nastepnyRuchY = 0;
                                                 break;
                                         case "B":
+                                        case "b":
                                                 nastepnyRuchY = 1;
                                                 break;
                                         case "C":
+                                        case "c":
                                                 nastepnyRuchY =2;
                                                 break;
                                         case "D":
+                                        case "d":
                                                 nastepnyRuchY = 3;
                                                 break;
                                         case "E":
+                                        case "e":
                                                 nastepnyRuchY = 4;
                                                 break;
                                         case "F":
+                                        case "f":
                                                 nastepnyRuchY = 5;
                                                 break;
                                         case "G":
+                                        case "g":
                                                 nastepnyRuchY = 6;
                                                 break;
                                         case "H":
+                                        case "h":
                                                 nastepnyRuchY =7;
                                                 break;
                                         default:
@@ -225,7 +241,7 @@ public class Gra {
                                                         boolean bialyKrolWSzachu = false;
                                                         boolean czarnyKrolWSzachu = false;
 
-                                                        wybranaFigura.zapiszRuchDoPliku(wybranaFigura,nastepnyRuchX,nastepnyRuchYZnak,1);
+                                                        wybranaFigura.zapiszRuchDoPliku(aktualnyGracz,wybranaFigura,wybranaWspolrzednaX,wybranaWspolrzednaYZnak,nastepnyRuchX,nastepnyRuchYZnak,1);
                                                         wybranaFigura.ruchFigura(nastepnyRuchX, nastepnyRuchY);
 
 

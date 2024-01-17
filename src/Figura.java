@@ -11,6 +11,7 @@ public boolean pierwszyRuch;
 protected Szachownica szachownica;
 public int gracz;
 
+
 private static LinkedList<Figura> wszystkieFigury = new LinkedList<>();
 
 
@@ -106,21 +107,31 @@ public Kolor zwrocKolor()
      }
 
 
-    public void zapiszRuchDoPliku(Figura wybranaFigura ,int koncoweX, String koncoweYZnak, int mode) {
+    public void zapiszRuchDoPliku(int aktualnyGracz, Figura wybranaFigura,int wspolrzedneX,String wybranaWspolrzednaYZnak ,int koncoweX, String koncoweYZnak, int mode) {
         try {
             // ---- Tablica dziala na zakresie [0-7] dlatego trzeba dodac o jeden.
+            wspolrzedneX++;
             koncoweX++;
 
             FileWriter writer = new FileWriter("Nowa_partia.txt",true);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write(wybranaFigura.toString().charAt(0));        //Znak figury
-            bufferedWriter.write(koncoweX+koncoweYZnak+"\n");            //Na którą pozycję
-
+            if (aktualnyGracz==0){
+                bufferedWriter.write(wybranaFigura.toString().charAt(0));
+                bufferedWriter.write(wspolrzedneX+wybranaWspolrzednaYZnak);
+                bufferedWriter.write(" - "+wybranaFigura.toString().charAt(0));
+                bufferedWriter.write(koncoweX+koncoweYZnak+"\n");
+            } else {
+                bufferedWriter.write(wybranaFigura.toString().charAt(0));
+                bufferedWriter.write(wspolrzedneX+wybranaWspolrzednaYZnak);
+                bufferedWriter.write(" - "+wybranaFigura.toString().charAt(0));
+                bufferedWriter.write(koncoweX+koncoweYZnak+"\t");
+            }
             bufferedWriter.close();
         } catch (IOException e) {
             System.out.println("Wystąpił błąd podczas zapisu do pliku: " + e.getMessage());
         }
     }
+
 
 }
 
